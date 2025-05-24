@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fanart Creed</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+  <!-- Montserrat + Inter両方読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@700&display=swap" rel="stylesheet" />
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
@@ -15,9 +16,8 @@
       background-attachment: fixed;
       position: relative;
       overflow-x: hidden;
-      font-size: 19px;
+      font-size: 21px;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -29,19 +29,28 @@
       z-index: -1;
       pointer-events: none;
     }
-
-    h1, h2 {
+    h2 {
+      font-weight: 700;
       color: #A0A0A0;
       margin-bottom: 12px;
-      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 0.01em;
     }
-
     section {
       max-width: 80ch;
+      min-width: 40ch;
       margin: 0 auto 40px auto;
-      background: rgba(68, 68, 68, 0.65);
-      padding: 40px 48px 40px 64px; /* ← 左を広くして、全体を右寄せ */
-      border-radius: 999px;
+      background: linear-gradient(
+        to right,
+        transparent 0%,
+        transparent 8%,
+        rgba(68,68,68,0.55) 16%,
+        rgba(68,68,68,0.55) 84%,
+        transparent 92%,
+        transparent 100%
+      );
+      padding: 40px 48px;
+      border-radius: 12px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       opacity: 0;
       transform: translateX(-40px) rotateY(-8deg);
@@ -49,41 +58,33 @@
       overflow-wrap: break-word;
       text-align: left;
     }
-
     section:nth-of-type(1) { animation-delay: 0.2s; }
     section:nth-of-type(2) { animation-delay: 0.4s; }
     section:nth-of-type(3) { animation-delay: 0.6s; }
     section:nth-of-type(4) { animation-delay: 0.8s; }
     section:nth-of-type(5) { animation-delay: 1s; }
-    section:nth-of-type(6) { animation-delay: 1.2s; }
-
     @keyframes tiltFadeIn {
       to {
         opacity: 1;
         transform: translateX(0) rotateY(0);
       }
     }
-
+    section p,
+    section ul,
+    section li {
+      font-weight: 400;
+    }
     section:nth-of-type(3) li {
       color: #CC3333;
     }
-
     a {
       color: #66CCFF;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 400;
     }
-
     a:hover {
       text-decoration: underline;
     }
-
-    .links a {
-      display: inline-block;
-      margin-right: 15px;
-      margin-top: 8px;
-    }
-
     hr {
       border: 0;
       height: 3px;
@@ -91,35 +92,65 @@
       margin: 40px auto;
       background: linear-gradient(to right, transparent, #A0A0A0, transparent);
     }
-
-    /* モバイル対応 */
+    footer {
+      margin: 40px 0 0 0;
+      text-align: center;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .pixiv-link {
+      font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      color: #0096FA !important;
+      font-size: 1.3em;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      transition: filter 0.15s;
+      padding: 0 0.2em;
+    }
+    .pixiv-link:hover {
+      filter: brightness(1.2);
+      text-decoration: underline;
+    }
+    @media (max-width: 1024px) {
+      section {
+        max-width: 96vw;
+        min-width: 0;
+      }
+    }
     @media (max-width: 768px) {
       body {
         padding: 20px 10px;
         font-size: 16px;
       }
-
       section {
         max-width: 100%;
-        padding: 30px 24px;
-        border-radius: 60px;
+        min-width: 0;
+        padding: 30px 16px;
+        border-radius: 10px;
+        margin: 0 0 30px 0;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          transparent 13%,
+          rgba(68,68,68,0.55) 23%,
+          rgba(68,68,68,0.55) 77%,
+          transparent 87%,
+          transparent 100%
+        );
       }
-
-      h1 {
-        font-size: 1.6rem;
-      }
-
       h2 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
       }
-
-      .links a {
-        display: block;
-        margin: 10px 0;
-      }
-
       hr {
         margin: 30px auto;
+      }
+      footer {
+        font-size: 0.97rem;
+        margin-top: 28px;
+      }
+      .pixiv-link {
+        font-size: 1.1em;
       }
     }
   </style>
@@ -127,7 +158,7 @@
 <body>
 
   <section>
-    <h1>⚡ Japan’s Fan Art Reality</h1>
+    <h2>⚡ Japan’s Fan Art Reality</h2>
     <p>
       Japan’s copyright law is harsh—no “fair use” to shield us.<br>
       Fan art drifts in a gray zone, tolerated but not endorsed.<br>
@@ -178,11 +209,9 @@
 
   <hr />
 
-  <section class="links">
-    <h2>🔗 Links</h2>
-    <a href="https://www.pixiv.net" target="_blank">Pixiv</a>
-    <a href="mailto:your.email@example.com">Email</a>
-  </section>
+  <footer>
+    <a href="https://www.pixiv.net/users/1833450" target="_blank" rel="noopener" class="pixiv-link">pixiv</a>
+  </footer>
 
 </body>
 </html>
